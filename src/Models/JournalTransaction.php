@@ -5,9 +5,8 @@ namespace Scottlaurent\Accounting\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Ledger
+ * Class Ledger.
  *
- * @package Scottlaurent\Accounting
  * @property    int $journal_id
  * @property    int $debit
  * @property    int $credit
@@ -19,7 +18,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class JournalTransaction extends Model
 {
-
     /**
      * @var string
      */
@@ -38,19 +36,16 @@ class JournalTransaction extends Model
     /**
      * @var array
      */
-    protected $guarded=['id'];
+    protected $guarded = ['id'];
 
     /**
      * @var array
      */
     protected $casts = [
         'post_date' => 'datetime',
-        'tags' => 'array',
+        'tags'      => 'array',
     ];
 
-    /**
-     *
-     */
     protected static function boot()
     {
         parent::boot();
@@ -77,9 +72,9 @@ class JournalTransaction extends Model
         return $this->belongsTo(Journal::class);
     }
 
-
     /**
      * @param Model $object
+     *
      * @return JournalTransaction
      */
     public function referencesObject($object)
@@ -87,19 +82,18 @@ class JournalTransaction extends Model
         $this->ref_class = get_class($object);
         $this->ref_class_id = $object->id;
         $this->save();
+
         return $this;
     }
 
-
-    /**
-     *
-     */
     public function getReferencedObject()
     {
         if ($classname = $this->ref_class) {
-            $_class = new $this->ref_class;
+            $_class = new $this->ref_class();
+
             return $_class->find($this->ref_class_id);
         }
+
         return false;
     }
 
@@ -110,5 +104,4 @@ class JournalTransaction extends Model
     {
         $this->currency = $currency;
     }
-
 }
