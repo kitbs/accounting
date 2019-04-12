@@ -1,18 +1,19 @@
 <?php
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
+
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 /**
- * Class CreateUsersTable
+ * Class CreateUsersTable.
  */
 class CreateProductsTable extends Migration
 {
-	/**
-	 * @var array
-	 */
-	protected $guarded = ['id'];
-	
+    /**
+     * @var array
+     */
+    protected $guarded = ['id'];
+
     /**
      * Run the migrations.
      *
@@ -27,6 +28,7 @@ class CreateProductsTable extends Migration
             $table->timestamps();
         });
     }
+
     /**
      * Reverse the migrations.
      *
